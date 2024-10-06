@@ -7,10 +7,10 @@ import {addProduct} from '../store/slices/productsSlice';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {AppDispatch} from '../store/store';
 
-import {RootStackParamList} from '../../App';
 import {Button} from '../components/Button';
 import {COLORS} from '../theme/colors';
 import {ButtonBack} from '../components/ButtonBack';
+import {RootStackParamList} from '../navigation/types';
 
 type AddProductScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -43,6 +43,7 @@ const AddProductScreen: React.FC<AddProductScreenProps> = ({navigation}) => {
           price: parseFloat(values.price),
           description: values.description,
           image: 'https://via.placeholder.com/150',
+          rating: {rate: 0, count: 0},
         };
         dispatch(addProduct(newProduct));
         resetForm();

@@ -2,14 +2,7 @@ import {createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import {RootState} from '../store';
-
-export interface Product {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  image: string;
-}
+import {Product} from '../../screens/types';
 
 interface ProductsState {
   items: Product[];

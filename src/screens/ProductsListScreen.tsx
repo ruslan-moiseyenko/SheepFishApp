@@ -9,11 +9,12 @@ import {
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {RootStackParamList} from '../../App';
 import {AppDispatch, RootState} from '../store/store';
 import {fetchProducts} from '../store/slices/productsSlice';
 import {COLORS} from '../theme/colors';
 import {Button} from '../components/Button';
+import {RootStackParamList} from '../navigation/types';
+import {Product} from './types';
 
 type ProductsListScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -37,7 +38,7 @@ const ProductsListScreen: React.FC<ProductsListScreenProps> = ({
     }
   }, [status, dispatch]);
 
-  const renderItem = ({item}: {item: any}) => (
+  const renderItem = ({item}: {item: Product}) => (
     <TouchableOpacity
       onPress={() =>
         navigation.navigate('ProductDetails', {productId: item.id})

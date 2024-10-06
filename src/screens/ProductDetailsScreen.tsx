@@ -2,30 +2,17 @@ import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/store';
-import {RouteProp} from '@react-navigation/native';
-import {RootStackParamList} from '../../App';
 import {COLORS} from '../theme/colors';
-import {StackNavigationProp} from '@react-navigation/stack';
 import {Button} from '../components/Button';
+import {RootStackScreenProps} from '../navigation/types';
 
-type ProductDetailsScreenRouteProp = RouteProp<
-  RootStackParamList,
-  'ProductDetails'
->;
+export type ProductDetailsScreenProps = {
+  productId: number;
+};
 
-type ProductsDetailsScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  'ProductDetails'
->;
-interface ProductDetailsScreenProps {
-  route: ProductDetailsScreenRouteProp;
-  navigation: ProductsDetailsScreenNavigationProp;
-}
-
-const ProductDetailsScreen: React.FC<ProductDetailsScreenProps> = ({
-  route,
-  navigation,
-}) => {
+const ProductDetailsScreen: React.FC<
+  RootStackScreenProps<'ProductDetails'>
+> = ({route, navigation}) => {
   const {productId} = route.params;
   const product = useSelector((state: RootState) =>
     state.products.items.find(item => item.id === productId),
